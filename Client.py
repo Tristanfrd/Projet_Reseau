@@ -1,16 +1,11 @@
-# This is a sample Python script.
+import socket
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host, port = "127.0.0.1", 9001
+client_socket.connect((host, port))
+nom = input("Quelle est votre nom ? ")
 
+while True:
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+	message = input(f"{nom} > ")
+	client_socket.send(f"{nom} > {message}".encode("utf-8"))
